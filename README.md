@@ -429,8 +429,16 @@ docker build -t my-horilla .
 docker stop my-horilla-container
 docker rm my-horilla-container
 docker run -d -p 8000:8000 --name my-horilla-container my-horilla
+docker run -p 8000:8000 my-horilla
+apt-get install gettext
 
 run master and sqllite3 db => just run the python server.
 run master and external db => horills>setting > db config required and run python server
 run master and external db in container => run docker compose file with exisiting config on copse file and no need to change horill>setting file, compose file setting will deploying.
 run master and external db RDS => chnage docker compose db setting as per rds configuration. and run the container
+
+===============ECR PUSH=================================================================================================================
+aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 621073710421.dkr.ecr.eu-west-2.amazonaws.com
+docker compose up --build
+docker tag horilla-master-server:latest 621073710421.dkr.ecr.eu-west-2.amazonaws.com/horilla-master-server:latest
+docker push 621073710421.dkr.ecr.eu-west-2.amazonaws.com/horilla-master-server:latest

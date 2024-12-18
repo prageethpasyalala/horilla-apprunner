@@ -39,9 +39,16 @@ env.read_env(os.path.join(BASE_DIR, ".env"), overwrite=True)
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+# DEBUG = env("DEBUG")
+DEBUG = False
 
-ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+
+# ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+ALLOWED_HOSTS = [
+    'j8pmhphkaq.eu-west-2.awsapprunner.com',
+    'localhost',  # If testing locally
+    '127.0.0.1',
+]
 
 # Application definition
 
@@ -193,7 +200,11 @@ MESSAGE_TAGS = {
 }
 
 
-CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
+# CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
+CSRF_TRUSTED_ORIGINS = [
+    'https://j8pmhphkaq.eu-west-2.awsapprunner.com',
+]
+
 
 LOGIN_URL = "/login"
 
